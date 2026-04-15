@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王阿米ian | 学术主理人 · 小狗主理人</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-light: #FFF5F7;
+            --pink-primary: #FFB6C1;
+            --pink-deep: #FF8FAB;
+            --pink-soft: #FFD6E0;
+            --pink-dark: #FF7096;
+            --yellow: #FFF3B0;
+            --mint: #B8F0E0;
+            --lavender: #F0E6FF;
+            --white: #FFFFFF;
+            --cream: #FFFBF9;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--cream);
+            color: #666;
+            overflow-x: hidden;
+        }
+
+        /* 浮动装饰 */
+        .floating-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .decor-item {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: float-1 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
+        }
+
+        /* 星星 */
+        .star-1 { top: 8%; left: 4%; animation: star-twinkle 2s ease-in-out infinite; }
+        .star-2 { top: 15%; right: 6%; animation: star-twinkle 2.5s ease-in-out infinite 0.3s; }
+        .star-3 { top: 35%; left: 3%; animation: star-twinkle 3s ease-in-out infinite 0.6s; }
+        .star-4 { top: 55%; right: 5%; animation: star-twinkle 2s ease-in-out infinite 0.9s; }
+        .star-5 { top: 75%; left: 6%; animation: star-twinkle 2.8s ease-in-out infinite 1.2s; }
+        .star-6 { top: 90%; right: 4%; animation: star-twinkle 2.2s ease-in-out infinite 0.4s; }
+
+        /* 爱心 */
+        .heart-1 { top: 12%; left: 8%; animation: heart-beat 2s ease-in-out infinite 0.2s; font-size: 1.2rem; }
+        .heart-2 { top: 28%; right: 7%; animation: heart-beat 2.5s ease-in-out infinite 0.5s; font-size: 1rem; }
+        .heart-3 { top: 45%; left: 5%; animation: heart-beat 2.2s ease-in-out infinite 0.8s; font-size: 1.3rem; }
+        .heart-4 { top: 65%; right: 8%; animation: heart-beat 2.8s ease-in-out infinite 0.3s; font-size: 1.1rem; }
+        .heart-5 { top: 82%; left: 4%; animation: heart-beat 2s ease-in-out infinite 1s; font-size: 1.2rem; }
+        .heart-6 { top: 92%; right: 6%; animation: heart-beat 2.4s ease-in-out infinite 0.6s; font-size: 1rem; }
+
+        /* 小狗 */
+        .dog-decor-1 { top: 22%; left: 6%; animation: dog-bounce 3s ease-in-out infinite; font-size: 1.3rem; }
+        .dog-decor-2 { top: 48%; right: 4%; animation: dog-bounce 3.5s ease-in-out infinite 0.5s; font-size: 1.1rem; }
+        .dog-decor-3 { top: 72%; right: 7%; animation: dog-bounce 2.8s ease-in-out infinite 1s; font-size: 1.4rem; }
+        .dog-decor-4 { top: 38%; left: 5%; animation: dog-bounce 3.2s ease-in-out infinite 0.7s; font-size: 1rem; }
+
+        @keyframes star-twinkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+        }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        @keyframes dog-bounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(-3deg); }
+            75% { transform: translateY(-5px) rotate(3deg); }
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* 滚动视差背景 */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .parallax-cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: cloud-float 30s linear infinite;
+        }
+
+        @keyframes cloud-float {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        /* 滚动出现的特效 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* 卡片悬浮特效 */
+        .hover-lift {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-15px) rotate(1deg) scale(1.02);
+        }
+
+        /* 按钮点击波纹 */
+        .ripple-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .ripple-btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 悬浮闪烁 */
+        .sparkle-hover {
+            position: relative;
+        }
+
+        .sparkle-hover::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .sparkle-hover:hover::before {
+            opacity: 1;
+            animation: sparkle-rotate 1s ease-in-out infinite;
+        }
+
+        @keyframes sparkle-rotate {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
+        }
+
+        /* 打字机效果 */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--pink-primary);
+            white-space: nowrap;
+            animation: typing 3s steps(30) 1s forwards, blink 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* 弹跳入场 */
+        .bounce-in {
+            animation: bounce-in 0.8s ease-out;
+        }
+
+        @keyframes bounce-in {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* 旋转木马效果 */
+        .carousel-3d {
+            perspective: 1000px;
+        }
+
+        .carousel-3d-item {
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* 渐变文字 */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep), var(--mint), var(--pink-primary));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-flow 3s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 浮动粒子 */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: particle-float 8s ease-in-out infinite;
+        }
+
+        @keyframes particle-float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translateY(-30px) translateX(15px) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-15px) translateX(-10px) rotate(180deg);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translateY(-25px) translateX(5px) rotate(270deg);
+                opacity: 1;
+            }
+        }
+
+        /* 彩虹渐变边框 */
+        .rainbow-border {
+            position: relative;
+        }
+
+        .rainbow-border::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--pink-primary), var(--yellow), var(--mint), var(--pink-deep), var(--pink-primary));
+            background-size: 400% 400%;
+            border-radius: inherit;
+            z-index: -1;
+            animation: rainbow-shift 3s ease infinite;
+        }
+
+        @keyframes rainbow-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 呼吸灯效果 */
+        .glow-pulse {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 183, 197, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 183, 197, 0.6), 0 0 60px rgba(255, 183, 197, 0.3); }
+        }
+
+        /* 加载动画 */
+        .loading-dots::after {
+            content: '';
+            animation: loading-dots 1.5s steps(4) infinite;
+        }
+
+        @keyframes loading-dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+
+        /* 滑动指示器 */
+        .scroll-indicator {
+            animation: bounce-arrow 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* 图片加载动画 */
+        .img-loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: img-shimmer 2s infinite;
+        }
+
+        @keyframes img-shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* 页面滚动时装饰物变化 */
+        .floating-decor.scroll-1 { opacity: 0.4; }
+        .floating-decor.scroll-2 { opacity: 0.7; }
+
+        /* 爱心雨效果 */
+        .hearts-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .falling-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: fall-heart 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fall-heart {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* 鼠标跟随特效 */
+        .cursor-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1rem;
+            transition: none;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.3);
+            border-radius: 0 0 30px 30px;
+        }
+
+        .logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            text-shadow: 2px 2px 0 var(--pink-soft);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #999;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a:hover {
+            background: var(--pink-soft);
+            color: var(--pink-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 183, 197, 0.4);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+            background: linear-gradient(180deg, var(--white) 0%, var(--pink-light) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 60%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(255, 183, 197, 0.3) 0%, transparent 60%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .hero-bg-2 {
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(184, 240, 224, 0.3) 0%, transparent 60%);
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            color: var(--pink-dark);
+        }
+
+        .hero-text h1 .highlight {
+            background: linear-gradient(45deg, var(--pink-dark), var(--pink-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--pink-dark);
+            box-shadow: 0 5px 20px rgba(255, 183, 197, 0.3);
+            border: 2px solid var(--pink-soft);
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        .hero-tag:nth-child(2) {
+            animation-delay: 0.5s;
+            border-color: var(--mint);
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: #999;
+            line-height: 1.8;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 50% 50% 45% 45%;
+            box-shadow: 0 20px 50px rgba(255, 183, 197, 0.4);
+            animation: float 6s ease-in-out infinite;
+            border: 5px solid var(--white);
+        }
+
+        .hero-image::before {
+            content: '💕';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        /* 标签滚动 */
+        .marquee-section {
+            background: linear-gradient(90deg, var(--pink-soft), var(--pink-primary), var(--pink-soft));
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+            padding: 0.8rem 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            color: var(--white);
+            font-size: 0.95rem;
+            padding: 0 2rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(255, 112, 150, 0.3);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 身份介绍 */
+        .identity-section {
+            padding: 5rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--pink-dark);
+        }
+
+        .section-title p {
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .identity-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.15);
+            transition: all 0.3s ease;
+            border: 3px solid var(--pink-light);
+        }
+
+        .identity-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--pink-soft);
+            box-shadow: 0 20px 50px rgba(255, 183, 197, 0.25);
+        }
+
+        .identity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--pink-soft), var(--yellow), var(--mint));
+        }
+
+        .identity-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: wiggle 4s ease-in-out infinite;
+        }
+
+        .identity-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--pink-dark);
+        }
+
+        .identity-card p {
+            color: #999;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* 小狗图集 */
+        .dogs-section {
+            padding: 5rem 5%;
+            background: linear-gradient(180deg, var(--white) 0%, var(--pink-light) 100%);
+            position: relative;
+        }
+
+        .dogs-section::before,
+        .dogs-section::after {
+            font-size: 2.5rem;
+            position: absolute;
+            opacity: 0.2;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        .dogs-section::before {
+            content: '🐾';
+            top: 15px;
+            left: 5%;
+        }
+
+        .dogs-section::after {
+            content: '✨';
+            bottom: 15px;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .dogs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 183, 197, 0.15);
+            transition: all 0.3s ease;
+            border: 3px solid var(--pink-light);
+        }
+
+        .dog-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            border-color: var(--pink-soft);
+            box-shadow: 0 20px 40px rgba(255, 183, 197, 0.25);
+        }
+
+        .dog-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 17px 17px 0 0;
+        }
+
+        .dog-card-info {
+            padding: 1.2rem;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .dog-card-info h4 {
+            color: var(--pink-dark);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .dog-card-info p {
+            color: #bbb;
+            font-size: 0.85rem;
+        }
+
+        /* 相册区域 */
+        .gallery-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 8px 25px rgba(255, 183, 197, 0.1);
+            border: 3px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(1deg);
+            border-color: var(--pink-soft);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .gallery-item.clicking {
+            animation: clickPop 0.4s ease-out;
+        }
+
+        @keyframes clickPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15) rotate(3deg); }
+            100% { transform: scale(1); }
+        }
+
+        .click-particle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 24px;
+            animation: particleFly 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes particleFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* 粉丝互动 */
+        .fans-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--white) 100%);
+            max-width: 750px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            border-radius: 40px;
+            border: 4px dashed var(--pink-soft);
+        }
+
+        .fans-section h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--pink-dark);
+        }
+
+        .fans-section p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
+        .follow-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 143, 171, 0.3);
+            border: 2px solid var(--white);
+        }
+
+        .follow-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 143, 171, 0.4);
+        }
+
+        /* 盲盒区域 */
+        .gacha-section {
+            padding: 5rem 5%;
+            background: linear-gradient(180deg, var(--white) 0%, var(--pink-light) 100%);
+        }
+
+        .gacha-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .gacha-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 3px solid var(--pink-light);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.1);
+        }
+
+        .gacha-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pink-soft);
+            box-shadow: 0 15px 50px rgba(255, 183, 197, 0.2);
+        }
+
+        .gacha-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .gacha-card p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .gacha-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.2rem;
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 143, 171, 0.35);
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .gacha-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 143, 171, 0.45);
+        }
+
+        .gacha-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 模态框 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 183, 197, 0.4);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+            animation: pop 0.5s ease;
+            border: 4px solid var(--pink-soft);
+            box-shadow: 0 20px 60px rgba(255, 143, 171, 0.3);
+        }
+
+        @keyframes pop {
+            0% { opacity: 0; transform: scale(0.6) rotate(-5deg); }
+            70% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--pink-soft);
+        }
+
+        .modal-emoji {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .modal-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-desc {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.9rem 2rem;
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Noto Sans SC', sans-serif;
+            box-shadow: 0 5px 20px rgba(255, 143, 171, 0.3);
+        }
+
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-primary) 100%);
+            color: var(--white);
+            padding: 2.5rem 5%;
+            text-align: center;
+            border-top: 4px solid var(--white);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(255, 112, 150, 0.3);
+        }
+
+        footer .social-links {
+            margin-top: 1.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        footer .social-links a {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        footer .social-links a:hover {
+            background: var(--white);
+            color: var(--pink-dark);
+            transform: translateY(-3px);
+        }
+
+        /* 响应式 */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 280px;
+            }
+
+            .identity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dogs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.large {
+                grid-column: span 2;
+            }
+
+            .gacha-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .message-board-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .dogs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* 留言板 */
+        .message-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .message-board {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .message-form {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--white) 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 3px solid var(--pink-light);
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 40px rgba(255, 183, 197, 0.15);
+        }
+
+        .message-form h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            color: var(--pink-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--pink-light);
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+            color: #666;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--pink-primary);
+            box-shadow: 0 5px 20px rgba(255, 183, 197, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: #ccc;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--pink-light);
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+            background: var(--white);
+            color: #666;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--pink-primary);
+            box-shadow: 0 5px 20px rgba(255, 183, 197, 0.2);
+        }
+
+        .form-textarea::placeholder {
+            color: #ccc;
+        }
+
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans SC', sans-serif;
+            box-shadow: 0 8px 25px rgba(255, 143, 171, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 143, 171, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .message-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 3px solid var(--pink-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--pink-primary), var(--mint));
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pink-soft);
+            box-shadow: 0 15px 40px rgba(255, 183, 197, 0.2);
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-soft), var(--pink-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 3px solid var(--white);
+            box-shadow: 0 5px 15px rgba(255, 183, 197, 0.3);
+        }
+
+        .message-info h4 {
+            font-size: 1rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .message-info span {
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        .message-content {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed var(--pink-light);
+        }
+
+        .message-action-btn {
+            background: none;
+            border: none;
+            color: #bbb;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s;
+        }
+
+        .message-action-btn:hover {
+            color: var(--pink-deep);
+        }
+
+        .empty-messages {
+            text-align: center;
+            padding: 3rem;
+            color: #bbb;
+        }
+
+        .empty-messages .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-messages p {
+            font-size: 1rem;
+        }
+
+        /* 留言成功提示 */
+        .toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: linear-gradient(45deg, var(--pink-primary), var(--pink-deep));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(255, 143, 171, 0.4);
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 加载动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮动装饰 - 星星 -->
+    <div class="floating-decor">
+        <span class="decor-item star-1">⭐</span>
+        <span class="decor-item star-2">✨</span>
+        <span class="decor-item star-3">⭐</span>
+        <span class="decor-item star-4">✨</span>
+        <span class="decor-item star-5">⭐</span>
+        <span class="decor-item star-6">✨</span>
+    </div>
+
+    <!-- 浮动装饰 - 爱心 -->
+    <div class="floating-decor">
+        <span class="decor-item heart-1">💕</span>
+        <span class="decor-item heart-2">💗</span>
+        <span class="decor-item heart-3">💖</span>
+        <span class="decor-item heart-4">💕</span>
+        <span class="decor-item heart-5">💗</span>
+        <span class="decor-item heart-6">💖</span>
+    </div>
+
+    <!-- 浮动装饰 - 小狗 -->
+    <div class="floating-decor">
+        <span class="decor-item dog-decor-1">🐕</span>
+        <span class="decor-item dog-decor-2">🐶</span>
+        <span class="decor-item dog-decor-3">🐕</span>
+        <span class="decor-item dog-decor-4">🐶</span>
+    </div>
+
+    <!-- 爱心雨 -->
+    <div class="hearts-rain" id="hearts-rain"></div>
+
+    <!-- 鼠标跟随 -->
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <!-- 导航 -->
+    <nav id="navbar">
+        <div class="logo">王阿米ian</div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#dogs">小狗图集</a></li>
+            <li><a href="#gallery">日常图集</a></li>
+            <li><a href="#message">留言板</a></li>
+            <li><a href="#gacha">趣味盲盒</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-2"></div>
+        <div class="hero-content">
+            <div class="hero-text fade-in">
+                <h1>欢迎来到<br><span class="highlight">王阿米ian</span><br>的小世界</h1>
+                <div class="hero-tags">
+                    <span class="hero-tag">🎓 学术主理人</span>
+                    <span class="hero-tag">🐕 小狗主理人</span>
+                </div>
+                <p>这里是王阿米ian的粉丝站，分享学术与萌宠的日常，期待与你相遇~</p>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="王阿米ian/微信图片_20260415165402_738_21.jpg" alt="王阿米ian">
+            </div>
+        </div>
+    </section>
+
+    <!-- 滚动标签 -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <span>✨ 学术主理人 · 小狗主理人 · 粉丝站 · 欢迎关注 · 日常分享 ✨</span>
+            <span>✨ 学术主理人 · 小狗主理人 · 粉丝站 · 欢迎关注 · 日常分享 ✨</span>
+        </div>
+    </div>
+
+    <!-- 身份介绍 -->
+    <section class="identity-section" id="about">
+        <div class="section-title fade-in">
+            <h2>关于阿米</h2>
+            <p>双重身份，多面魅力</p>
+        </div>
+        <div class="identity-grid">
+            <div class="identity-card fade-in">
+                <div class="identity-icon">🎓</div>
+                <h3>学术主理人</h3>
+                <p>专注学术领域，主理各类学术活动与论坛。穿梭于知识的海洋，用专业与热情连接每一位热爱学术的朋友。</p>
+            </div>
+            <div class="identity-card fade-in">
+                <div class="identity-icon">🐕</div>
+                <h3>小狗主理人</h3>
+                <p>热爱每一只毛孩子的生活主理人。在忙碌的学术之余，享受与小狗们的治愈时光，分享养宠日常与暖心陪伴。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 小狗图集 -->
+    <section class="dogs-section" id="dogs">
+        <div class="section-title fade-in">
+            <h2>🐕 可爱小狗图集</h2>
+            <p>阿米家毛孩子的可爱瞬间</p>
+        </div>
+        <div class="dogs-grid">
+            <div class="dog-card fade-in">
+                <img src="王阿米ian/微信图片_20260415173034_769_21.jpg" alt="小狗日常">
+                <div class="dog-card-info">
+                    <h4>🐶 萌宠日常</h4>
+                    <p>治愈系小可爱</p>
+                </div>
+            </div>
+            <div class="dog-card fade-in">
+                <img src="王阿米ian/微信图片_20260415173037_772_21.jpg" alt="小狗日常">
+                <div class="dog-card-info">
+                    <h4>💕 治愈时光</h4>
+                    <p>暖心陪伴</p>
+                </div>
+            </div>
+            <div class="dog-card fade-in">
+                <img src="王阿米ian/微信图片_20260415173039_774_21.jpg" alt="小狗日常">
+                <div class="dog-card-info">
+                    <h4>☁️ 软萌暴击</h4>
+                    <p>心都化了</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图集 -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-title fade-in">
+            <h2>📷 日常图集</h2>
+            <p>记录每一个珍贵瞬间</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="王阿米ian/微信图片_20260415165707_752_21.jpg" alt="日常分享">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="王阿米ian/微信图片_20260415165701_747_21.jpg" alt="日常分享">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="王阿米ian/微信图片_20260415165702_748_21.jpg" alt="日常分享">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="王阿米ian/微信图片_20260415165703_749_21.jpg" alt="日常分享">
+            </div>
+        </div>
+    </section>
+
+    <!-- 粉丝互动 -->
+    <section class="fans-section" id="fans">
+        <h2 class="fade-in">💜 成为粉丝</h2>
+        <p class="fade-in">关注王阿米ian，获取更多日常与分享</p>
+        <div class="follow-buttons fade-in">
+            <a href="https://weibo.com/u/6562266654" target="_blank" class="follow-btn">💜 关注微博</a>
+            <a href="#" class="follow-btn">💗 关注小红书</a>
+            <a href="#" class="follow-btn">💙 关注抖音</a>
+        </div>
+    </section>
+
+    <!-- 盲盒抽取 -->
+    <section class="gacha-section" id="gacha">
+        <div class="section-title fade-in">
+            <h2>🎁 趣味盲盒</h2>
+            <p>点击抽取你的专属惊喜</p>
+        </div>
+        <div class="gacha-grid">
+            <div class="gacha-card fade-in">
+                <h3>🐕 狗狗品种盲盒</h3>
+                <p>小狗主理人专属！看看今天会遇到什么可爱小狗~</p>
+                <button class="gacha-btn" onclick="rollDogGacha()">
+                    🎰 抽取狗狗
+                </button>
+            </div>
+            <div class="gacha-card fade-in">
+                <h3>🐱 小猫品种盲盒</h3>
+                <p>猫奴专属！看看今天会遇到什么可爱小猫~</p>
+                <button class="gacha-btn" onclick="rollCatGacha()">
+                    🐾 抽取猫咪
+                </button>
+            </div>
+            <div class="gacha-card fade-in">
+                <h3>📚 今日学习盲盒</h3>
+                <p>学术主理人专属！看看今天适合学习什么~</p>
+                <button class="gacha-btn" onclick="rollStudyGacha()">
+                    🎯 抽取学习内容
+                </button>
+            </div>
+            <div class="gacha-card fade-in">
+                <h3>🍽️ 今天吃什么</h3>
+                <p>选择困难症患者的救星！看看今天推荐吃什么~</p>
+                <button class="gacha-btn" onclick="rollFoodGacha()">
+                    🍜 抽取美食
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 盲盒结果模态框 -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-emoji" id="modal-emoji">🐕</div>
+            <div class="modal-title" id="modal-title">金毛寻回犬</div>
+            <div class="modal-desc" id="modal-desc">暖男大金毛，温柔又粘人！</div>
+            <button class="modal-btn" onclick="closeModal()">太棒了！✨</button>
+        </div>
+    </div>
+
+    <!-- 留言板 -->
+    <section class="message-section" id="message">
+        <div class="section-title fade-in">
+            <h2>💌 可爱留言板</h2>
+            <p>留下你想对阿米说的话吧~</p>
+        </div>
+        <div class="message-board">
+            <!-- 留言表单 -->
+            <div class="message-form fade-in">
+                <h3>✨ 写下你的留言 ✨</h3>
+                <div class="form-row">
+                    <input type="text" class="form-input" id="name-input" placeholder="你的昵称~" maxlength="20">
+                    <input type="text" class="form-input" id="weibo-input" placeholder="你的微博/小红书（选填）" maxlength="30">
+                </div>
+                <textarea class="form-textarea" id="message-input" placeholder="想说点什么..." maxlength="200"></textarea>
+                <button class="submit-btn" onclick="submitMessage()">
+                    🌸 发送留言 🌸
+                </button>
+            </div>
+
+            <!-- 留言列表 -->
+            <div class="message-list" id="message-list">
+                <div class="message-card fade-in">
+                    <div class="message-header">
+                        <div class="message-avatar">🐰</div>
+                        <div class="message-info">
+                            <h4>兔兔爱睡觉</h4>
+                            <span>2分钟前</span>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        阿米加油！学术和萌宠都要好好的~期待更多分享！🐶💕
+                    </div>
+                    <div class="message-actions">
+                        <button class="message-action-btn" onclick="likeMessage(this)">❤️ 喜欢</button>
+                        <button class="message-action-btn">💬 回复</button>
+                    </div>
+                </div>
+                <div class="message-card fade-in">
+                    <div class="message-header">
+                        <div class="message-avatar">🐻</div>
+                        <div class="message-info">
+                            <h4>小熊软糖</h4>
+                            <span>15分钟前</span>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        小狗主理人太可爱了！请问阿米养的是什么品种的狗狗呀？好想看！
+                    </div>
+                    <div class="message-actions">
+                        <button class="message-action-btn" onclick="likeMessage(this)">❤️ 喜欢</button>
+                        <button class="message-action-btn">💬 回复</button>
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </section>
+
+    <!-- 留言成功提示 -->
+    <div class="toast" id="toast">🌸 留言成功！感谢你的支持~</div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 王阿米ian. All rights reserved. | 学术主理人 · 小狗主理人</p>
+        <div class="social-links">
+            <a href="#" title="微信">微</a>
+            <a href="#" title="微博">博</a>
+            <a href="#" title="小红书">红</a>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 滚动显示动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 狗狗品种盲盒数据
+        const dogBreeds = [
+            { emoji: '🦮', name: '金毛寻回犬', desc: '暖男大金毛，温柔又粘人，是狗狗界的小太阳！☀️' },
+            { emoji: '🐺', name: '哈士奇', desc: '西伯利亚雪橇犬，拆家小能手，但笑起来超治愈！' },
+            { emoji: '👑', name: '柯基犬', desc: '短腿小屁股，走起路来摇摇晃晃，笑死我了哈哈哈！' },
+            { emoji: '🦴', name: '拉布拉多', desc: '聪明又友善，导盲犬常客，是人类最忠诚的朋友！' },
+            { emoji: '🔥', name: '柴犬', desc: '日本国犬，表情包常客，那魔性的微笑你值得拥有！' },
+            { emoji: '🧸', name: '马尔济斯', desc: '棉花糖一样的小公主，优雅又可爱，小公主本主！' },
+            { emoji: '🐶', name: '比熊犬', desc: '棉花糖本糖！软绵绵的白毛球，抱起来超舒服~' },
+            { emoji: '🐕‍🦺', name: '边境牧羊犬', desc: '狗界智商担当，一个眼神就能读懂你的心！' },
+            { emoji: '🦃', name: '贵宾犬', desc: '聪明伶俐，造型百变，是狗狗界的时尚达人！' },
+            { emoji: '🐕', name: '萨摩耶', desc: '微笑天使，通体雪白，笑起来整个世界都亮了！' },
+            { emoji: '🐶', name: '博美犬', desc: '小狐狸般的小精灵，活泼好动，超级粘人！' },
+            { emoji: '🦮', name: '法国斗牛犬', desc: '小胖猪一样的身材，圆圆的眼睛，丑萌丑萌的！' }
+        ];
+
+        // 学习内容盲盒数据
+        const studyTopics = [
+            { emoji: '📖', name: '阅读一本好书', desc: '今天是沉浸在文字世界的一天，选一本经典好好读吧~' },
+            { emoji: '✍️', name: '练习写作', desc: '把脑海中的想法化为文字，创作属于你自己的故事！' },
+            { emoji: '🧮', name: '学习数学', desc: '数字的海洋很有趣！今天可以攻克一道难题~' },
+            { emoji: '🌍', name: '探索历史', desc: '穿越时空的隧道，了解古今中外的精彩故事！' },
+            { emoji: '🔬', name: '做科学实验', desc: '动手实践真理，让好奇心带领你探索世界的奥秘！' },
+            { emoji: '🎨', name: '绘画创作', desc: '用色彩表达情感，今天适合创作一幅属于自己的作品！' },
+            { emoji: '🎵', name: '学习音乐', desc: '让音符跳动起来，乐器或声乐都很棒呢~' },
+            { emoji: '💻', name: '编程入门', desc: '数字世界的魔法师，用代码创造无限可能！' },
+            { emoji: '🗣️', name: '练习语言', desc: '打开新世界的大门，多学一门语言多一条路！' },
+            { emoji: '📚', name: '整理笔记', desc: '温故而知新，系统地复习整理会让学习更高效！' },
+            { emoji: '🧠', name: '逻辑推理', desc: '挑战思维极限，数独、象棋都是很棒的选择！' },
+            { emoji: '🌱', name: '学习植物学', desc: '走进大自然的课堂，花草树木都是好老师！' }
+        ];
+
+        // 美食盲盒数据
+        const foodTopics = [
+            { emoji: '🍜', name: '热干面', desc: '浓郁的芝麻酱香，早上来一碗，元气满满一整天！' },
+            { emoji: '🍕', name: '披萨', desc: '芝士拉丝超满足！今晚就吃快乐披萨吧~' },
+            { emoji: '🍦', name: '冰淇淋', desc: '甜蜜冰凉，夏天怎么能少了冰淇淋！' },
+            { emoji: '🍰', name: '蛋糕', desc: '甜甜软软的蛋糕，给自己一个小小的奖励吧~' },
+            { emoji: '🍣', name: '寿司', desc: '新鲜美味的寿司，一口一个幸福！' },
+            { emoji: '🌮', name: '墨西哥塔可', desc: '香脆的玉米饼配上各种馅料，异域风情满满！' },
+            { emoji: '🍲', name: '火锅', desc: '热腾腾的火锅，和朋友们一起分享超开心！' },
+            { emoji: '🥗', name: '沙拉', desc: '清爽健康的沙拉，给身体来个大扫除~' },
+            { emoji: '🍦', name: '绵绵冰', desc: '细腻绵软的绵绵冰，入口即化的甜蜜！' },
+            { emoji: '🧁', name: '杯子蛋糕', desc: '可爱的小蛋糕，一杯一杯停不下来~' },
+            { emoji: '🍱', name: '日式便当', desc: '精致又营养均衡，午餐就选它！' },
+            { emoji: '🥐', name: '牛角面包', desc: '酥脆层层叠叠，早餐配咖啡绝了！' }
+        ];
+
+        // 猫咪品种盲盒数据
+        const catBreeds = [
+            { emoji: '🐱', name: '英国短毛猫', desc: '圆脸肥腮的包子猫，安静温柔，是安静的陪伴者~' },
+            { emoji: '😺', name: '美国短毛猫', desc: '活泼好动的精灵，精力充沛，是家里的开心果！' },
+            { emoji: '🐱', name: '布偶猫', desc: '蓝眼睛的小仙女，性格温顺，是行走的毛绒抱枕！' },
+            { emoji: '😻', name: '暹罗猫', desc: '挖煤工的贵族脸，粘人话多，是话痨小公主！' },
+            { emoji: '🐱', name: '波斯猫', desc: '优雅的长毛猫，高冷安静，是安静的毛球~' },
+            { emoji: '😺', name: '缅因猫', desc: '霸气的巨猫，毛发浓密，是温柔的巨人！' },
+            { emoji: '🐱', name: '阿比西尼亚猫', desc: '古老的精灵猫，好奇心强，是探险家！' },
+            { emoji: '😻', name: '苏格兰折耳猫', desc: '软萌的小折耳，可爱乖巧，是安静的宝贝！' },
+            { emoji: '🐱', name: '俄罗斯蓝猫', desc: '优雅的蓝灰色精灵，安静害羞，是高冷小王子！' },
+            { emoji: '😺', name: '孟加拉豹猫', desc: '野性十足的酷猫，精力旺盛，是小型猎手！' },
+            { emoji: '🐱', name: '金吉拉', desc: '银色长毛小公主，优雅可爱，是行走的表情包！' },
+            { emoji: '😻', name: '中华田园猫', desc: '接地气的小土猫，健康活泼，是家里的万能猫！' }
+        ];
+
+        // 狗狗盲盒
+        function rollDogGacha() {
+            const randomIndex = Math.floor(Math.random() * dogBreeds.length);
+            const result = dogBreeds[randomIndex];
+            showModal(result.emoji, result.name, result.desc);
+        }
+
+        // 学习盲盒
+        function rollStudyGacha() {
+            const randomIndex = Math.floor(Math.random() * studyTopics.length);
+            const result = studyTopics[randomIndex];
+            showModal(result.emoji, result.name, result.desc);
+        }
+
+        // 美食盲盒
+        function rollFoodGacha() {
+            const randomIndex = Math.floor(Math.random() * foodTopics.length);
+            const result = foodTopics[randomIndex];
+            showModal(result.emoji, result.name, result.desc);
+        }
+
+        // 猫咪盲盒
+        function rollCatGacha() {
+            const randomIndex = Math.floor(Math.random() * catBreeds.length);
+            const result = catBreeds[randomIndex];
+            showModal(result.emoji, result.name, result.desc);
+        }
+
+        // 显示模态框
+        function showModal(emoji, title, desc) {
+            document.getElementById('modal-emoji').textContent = emoji;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+            document.getElementById('modal').classList.add('show');
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        // 点击遮罩关闭
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // 爱心雨效果
+        function createHeartsRain() {
+            const container = document.getElementById('hearts-rain');
+            const hearts = ['💕', '💗', '💖', '💘', '💝', '❤️', '🩷', '🩵'];
+
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.className = 'falling-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    heart.style.fontSize = (1 + Math.random() * 1) + 'rem';
+                    container.appendChild(heart);
+
+                    // 移除并重新创建
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 12000);
+                }, i * 800);
+            }
+
+            // 持续循环
+            setInterval(() => {
+                const heart = document.createElement('span');
+                heart.className = 'falling-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+                heart.style.fontSize = (1 + Math.random() * 1) + 'rem';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 12000);
+            }, 2000);
+        }
+
+        // 鼠标跟随特效
+        function initCursorTrail() {
+            const trail = document.getElementById('cursor-trail');
+            const emojis = ['✨', '⭐', '💕', '🌟', '💫'];
+            let lastTime = 0;
+            const throttleMs = 150;
+
+            document.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastTime < throttleMs) return;
+                lastTime = now;
+
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                const span = document.createElement('span');
+                span.textContent = emoji;
+                span.style.left = e.clientX + 'px';
+                span.style.top = e.clientY + 'px';
+                span.style.position = 'fixed';
+                span.style.zIndex = '9999';
+                span.style.pointerEvents = 'none';
+                span.style.fontSize = '1rem';
+                span.style.transition = 'all 1s ease-out';
+                span.style.opacity = '1';
+
+                document.body.appendChild(span);
+
+                // 动画并移除
+                requestAnimationFrame(() => {
+                    span.style.transform = 'translateY(-30px) scale(0)';
+                    span.style.opacity = '0';
+                });
+
+                setTimeout(() => {
+                    span.remove();
+                }, 1000);
+            });
+        }
+
+        // 启动特效
+        createHeartsRain();
+        initCursorTrail();
+
+        // 页面滚动时装饰物变化
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.decor-item').forEach(item => {
+                if (scrolled > 200) {
+                    item.style.opacity = '0.3';
+                } else {
+                    item.style.opacity = '1';
+                }
+            });
+
+            // 滚动视差效果
+            document.querySelectorAll('.parallax-bg').forEach(el => {
+                el.style.transform = `translateY(${scrolled * 0.3}px)`;
+            });
+        });
+
+        // 增强滚动显示动画
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // 添加弹跳动画
+                    if (entry.target.classList.contains('bounce-in')) {
+                        entry.target.style.animation = 'bounce-in 0.8s ease-out';
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in, .scroll-reveal').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // 为卡片添加悬浮增强效果
+        document.querySelectorAll('.identity-card, .dog-card, .gallery-item, .gacha-card, .message-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animation = 'glow-pulse 1s ease-in-out';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.animation = '';
+            });
+        });
+
+        // 图片点击特效
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                const particles = ['💖', '✨', '🌸', '💕', '⭐', '🩷', '💗', '🌟'];
+
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'click-particle';
+                    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    const angle = (i / 8) * Math.PI * 2;
+                    const distance = 60 + Math.random() * 40;
+                    particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                    particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1000);
+                }
+
+                this.parentElement.classList.add('clicking');
+                setTimeout(() => this.parentElement.classList.remove('clicking'), 400);
+            });
+        });
+
+        // 添加滚动粒子效果
+        function createScrollParticles() {
+            const particles = ['✨', '⭐', '💕', '🌸', '💫', '🌟'];
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                particle.style.opacity = 0.4;
+                document.body.appendChild(particle);
+            }
+        }
+        createScrollParticles();
+
+        // 添加视差云朵
+        function createParallaxClouds() {
+            const cloudContainer = document.createElement('div');
+            cloudContainer.className = 'parallax-bg';
+            document.body.insertBefore(cloudContainer, document.body.firstChild);
+
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'parallax-cloud';
+                cloud.style.width = (80 + Math.random() * 100) + 'px';
+                cloud.style.height = (30 + Math.random() * 40) + 'px';
+                cloud.style.top = (10 + Math.random() * 70) + '%';
+                cloud.style.animationDelay = Math.random() * 20 + 's';
+                cloud.style.opacity = 0.3 + Math.random() * 0.3;
+                cloudContainer.appendChild(cloud);
+            }
+        }
+        createParallaxClouds();
+
+        // 留言板功能
+        const avatars = ['🐰', '🐻', '🦊', '🐱', '🐶', '🐼', '🐨', '🐯', '🦁', '🐸'];
+
+        // 提交留言
+        function submitMessage() {
+            const nameInput = document.getElementById('name-input');
+            const weiboInput = document.getElementById('weibo-input');
+            const messageInput = document.getElementById('message-input');
+
+            const name = nameInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!name) {
+                showToast('请输入你的昵称哦~ 🌸');
+                nameInput.focus();
+                return;
+            }
+
+            if (!message) {
+                showToast('请输入留言内容~ 🌸');
+                messageInput.focus();
+                return;
+            }
+
+            // 创建新留言
+            const avatar = avatars[Math.floor(Math.random() * avatars.length)];
+            const newMessage = document.createElement('div');
+            newMessage.className = 'message-card fade-in';
+            newMessage.innerHTML = `
+                <div class="message-header">
+                    <div class="message-avatar">${avatar}</div>
+                    <div class="message-info">
+                        <h4>${escapeHtml(name)}</h4>
+                        <span>刚刚</span>
+                    </div>
+                </div>
+                <div class="message-content">
+                    ${escapeHtml(message)}
+                </div>
+                <div class="message-actions">
+                    <button class="message-action-btn" onclick="likeMessage(this)">❤️ 喜欢</button>
+                    <button class="message-action-btn">💬 回复</button>
+                </div>
+            `;
+
+            const messageList = document.getElementById('message-list');
+            messageList.insertBefore(newMessage, messageList.firstChild);
+
+            // 清空表单
+            nameInput.value = '';
+            weiboInput.value = '';
+            messageInput.value = '';
+
+            // 显示成功提示
+            showToast('🌸 留言成功！感谢你的支持~');
+
+            // 触发动画
+            setTimeout(() => {
+                newMessage.classList.add('visible');
+            }, 10);
+        }
+
+        // 喜欢留言
+        function likeMessage(btn) {
+            const text = btn.textContent;
+            if (text.includes('喜欢') && !text.includes('已喜欢')) {
+                btn.textContent = '❤️ 已喜欢';
+                btn.style.color = 'var(--pink-deep)';
+                showToast('谢谢你喜欢这条留言~ 💕');
+            }
+        }
+
+        // 显示提示
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // HTML转义防止XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
